@@ -1,57 +1,69 @@
 package com.example.greenatomwidget
 
+import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
+import android.os.Binder
+import android.util.Log
+import android.widget.Adapter
+import android.widget.AdapterView
 import android.widget.RemoteViews
 import android.widget.RemoteViews.RemoteView
 import android.widget.RemoteViewsService
+import org.jetbrains.annotations.Contract
 
 class WidgetListViewService : RemoteViewsService() {
-    override fun onGetViewFactory(p0: Intent?): RemoteViewsFactory {
-        return WidgetListView(this.applicationContext);
+    override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
+        return StackRemoteViewsFactory(this.applicationContext, intent);
     }
 
-    class WidgetListView(context: Context, data : ArrayList<WidgetDataModel>) : RemoteViewsService.RemoteViewsFactory {
-        val mContext = context;
-        var mData = data;
+    class StackRemoteViewsFactory(context: Context, intent: Intent) : RemoteViewsService.RemoteViewsFactory {
+        private val mContext = context;
+        private var mCursor : Cursor? = null;
 
-
-        override fun onCreate() {
-            TODO("Not yet implemented")
+        override fun onCreate()
+        {
         }
 
         override fun onDataSetChanged() {
-            TODO("Not yet implemented")
+            mCursor?.close();
+            mCursor = mContext.contentResolver.query(ListDataProvider.CONTENT_URI, null, null, null, null);
         }
 
         override fun onDestroy() {
-            TODO("Not yet implemented")
+            mCursor?.close();
         }
 
         override fun getCount(): Int {
-            TODO("Not yet implemented")
+            return mCursor?.count ?: 0;
         }
 
-        override fun getViewAt(position: Int): RemoteViews {
-            val views : RemoteViews = RemoteViews(mContext.packageName, R.layout.list_item_layout);
+        override fun getViewAt(position: Int): RemoteViews? {
+            if (position == AdapterView.INVALID_POSITION || mCursor == null || !mCursor!!.moveToPosition(position))
+            {
+                return null;
+            }
+            val rv = RemoteViews(mContext.packageName, R.layout.list_item_layout);
+            rv.setTextViewText(R.id.textView1, mCursor!!.getString(1));
 
-            views.setTextViewText(R.id.)
+            return rv;
         }
 
-        override fun getLoadingView(): RemoteViews {
-            TODO("Not yet implemented")
+        override fun getLoadingView(): RemoteViews? {
+            return null;
         }
 
         override fun getViewTypeCount(): Int {
-            TODO("Not yet implemented")
+            return 1;
         }
 
-        override fun getItemId(p0: Int): Long {
-            TODO("Not yet implemented")
+        override fun getItemId(position: Int): Long {
+            return position.toLong();
         }
 
         override fun hasStableIds(): Boolean {
-            TODO("Not yet implemented")
+            return true;
         }
 
     }

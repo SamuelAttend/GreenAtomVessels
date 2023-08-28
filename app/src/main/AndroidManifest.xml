@@ -13,7 +13,8 @@
         android:theme="@style/Theme.GreenAtomWidget"
         tools:targetApi="29">
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
@@ -22,12 +23,8 @@
             </intent-filter>
         </activity>
         
-<!--        <provider-->
-<!--            android:authorities="com.example.greenatomwidget.provider"-->
-<!--            android:name="com.example.greenatomwidget.AppContentProvider">-->
-<!--        </provider>-->
-
-        <receiver android:name=".WidgetProvider"
+        <receiver
+            android:name=".WidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -36,6 +33,17 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
+        
+        <provider
+            android:authorities="com.example.greenatomwidget"
+            android:name="com.example.greenatomwidget.ListDataProvider"
+            android:enabled="true"
+            android:exported="true">
+        </provider>
+
+        <service
+            android:name=".WidgetListViewService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
 
     </application>
 
