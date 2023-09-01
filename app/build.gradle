@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.greenatomwidget'
+    namespace 'com.example.GreenAtomVessels'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.greenatomwidget"
+        applicationId "com.example.GreenAtomVessels"
         minSdk 29
         targetSdk 33
         versionCode 1

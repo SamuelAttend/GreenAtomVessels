@@ -1,18 +1,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:weightSum="2"
-    android:id="@+id/widgetItemContainer"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/widgetItemContainer">
 
-    <TextView android:id="@+id/textView1"
-        android:text="Hello!"
-        android:layout_width="match_parent"
-        android:gravity="start"
-        android:layout_weight="1"
+    <TextView android:id="@+id/textViewShip"
+        android:text="ERROR"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:textColor="@color/black"
-        android:background="@color/white"
-        android:layout_gravity="center_vertical"
-        android:layout_height="wrap_content"></TextView>
+        android:layout_gravity="center"/>
+
+    <TextView android:id="@+id/textViewPort"
+        android:text="ERROR"
+        android:layout_width="49dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
+    <TextView android:id="@+id/textViewArrivalDate"
+        android:text="ERROR"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
+    <TextView android:id="@+id/textViewArrivalLeft"
+        android:text="ERROR"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
+    <TextView android:id="@+id/textViewDepartureDate"
+        android:text="ERROR"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
+    <TextView android:id="@+id/textViewDepartureLeft"
+        android:text="ERROR"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

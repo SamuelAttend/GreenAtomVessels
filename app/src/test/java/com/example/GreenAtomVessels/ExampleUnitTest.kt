@@ -1,4 +1,4 @@
-package com.example.greenatomwidget
+package com.example.GreenAtomVessels
 
 import org.junit.Test
 

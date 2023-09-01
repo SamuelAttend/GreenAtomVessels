@@ -1,17 +1,12 @@
-package com.example.greenatomwidget
+package com.example.GreenAtomVessels
 
-import android.appwidget.AppWidgetManager
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
-import android.os.Binder
-import android.util.Log
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.RemoteViews
-import android.widget.RemoteViews.RemoteView
 import android.widget.RemoteViewsService
-import org.jetbrains.annotations.Contract
 
 class WidgetListViewService : RemoteViewsService() {
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
@@ -28,7 +23,7 @@ class WidgetListViewService : RemoteViewsService() {
 
         override fun onDataSetChanged() {
             mCursor?.close();
-            mCursor = mContext.contentResolver.query(ListDataProvider.CONTENT_URI, null, null, null, null);
+            mCursor = mContext.contentResolver.query(DataProvider.LIST_DATA_URI, null, null, null, null);
         }
 
         override fun onDestroy() {
@@ -39,13 +34,20 @@ class WidgetListViewService : RemoteViewsService() {
             return mCursor?.count ?: 0;
         }
 
+        @SuppressLint("Range")
         override fun getViewAt(position: Int): RemoteViews? {
             if (position == AdapterView.INVALID_POSITION || mCursor == null || !mCursor!!.moveToPosition(position))
             {
                 return null;
             }
             val rv = RemoteViews(mContext.packageName, R.layout.list_item_layout);
-            rv.setTextViewText(R.id.textView1, mCursor!!.getString(1));
+
+            rv.setTextViewText(R.id.textViewShip, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.VESSEL)));
+            rv.setTextViewText(R.id.textViewPort, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.PORT)));
+            rv.setTextViewText(R.id.textViewArrivalDate, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.ARRIVAL_DATE)));
+            rv.setTextViewText(R.id.textViewArrivalLeft, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.ARRIVAL_LEFT)));
+            rv.setTextViewText(R.id.textViewDepartureDate, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.DEPARTURE_DATE)));
+            rv.setTextViewText(R.id.textViewDepartureLeft, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.DEPARTURE_LEFT)));
 
             return rv;
         }

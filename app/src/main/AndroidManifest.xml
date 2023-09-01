@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GreenAtomWidget"
+        android:theme="@style/Theme.GreenAtomVessels"
         tools:targetApi="29">
 
         <activity
@@ -35,8 +35,8 @@
         </receiver>
         
         <provider
-            android:authorities="com.example.greenatomwidget"
-            android:name="com.example.greenatomwidget.ListDataProvider"
+            android:authorities="com.example.GreenAtomVessels"
+            android:name="com.example.GreenAtomVessels.DataProvider"
             android:enabled="true"
             android:exported="true">
         </provider>

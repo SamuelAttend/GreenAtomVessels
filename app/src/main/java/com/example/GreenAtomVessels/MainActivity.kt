@@ -1,9 +1,6 @@
-package com.example.greenatomwidget
+package com.example.GreenAtomVessels
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity()

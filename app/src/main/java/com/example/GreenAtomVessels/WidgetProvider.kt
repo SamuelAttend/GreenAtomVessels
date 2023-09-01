@@ -1,4 +1,4 @@
-package com.example.greenatomwidget
+package com.example.GreenAtomVessels
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -6,9 +6,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.RemoteViews
 
 class WidgetProvider : AppWidgetProvider() {
