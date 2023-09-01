@@ -18,7 +18,7 @@ class DataProvider : ContentProvider()
 
     object Columns {
         const val ID: String = "_id";
-        const val VESSEL: String = "ship";
+        const val VESSEL: String = "vessel";
         const val PORT: String = "port";
         const val ARRIVAL_DATE: String = "arrival_date";
         const val ARRIVAL_LEFT: String = "arrival_left";
@@ -30,13 +30,13 @@ class DataProvider : ContentProvider()
     val mFavorites : MutableSet<Int> = mutableSetOf();
 
     override fun onCreate(): Boolean {
-        mData.add(ListDataModel("Ship Test", "Port Test", Date(123123), 3, Date(123132), 15));
-        mData.add(ListDataModel("Ship Test", "Port Test", Date(123123), 3, Date(123132), 15));
-        mData.add(ListDataModel("Ship Test", "Port Test", Date(123123), 3, Date(123132), 15));
-        mData.add(ListDataModel("Ship Test Extra", "Port Test", Date(123123), 3, Date(123132), 15));
-        mData.add(ListDataModel("Ship Test", "Port Test", Date(123123), 3, Date(123132), 15));
-        mData.add(ListDataModel("Ship Test", "Port Test", Date(123123), 3, Date(123132), 15));
-        mData.add(ListDataModel("Ship Test", "Port Test", Date(123123), 3, Date(123132), 15));
+        mData.add(ListDataModel("Vessel Test", "Port Test", Date(123123), 3, Date(123132), 15));
+        mData.add(ListDataModel("Vessel Test", "Port Test", Date(123123), 3, Date(123132), 15));
+        mData.add(ListDataModel("Vessel Test", "Port Test", Date(123123), 3, Date(123132), 15));
+        mData.add(ListDataModel("Vessel Test Extra", "Port Test", Date(123123), 3, Date(123132), 15));
+        mData.add(ListDataModel("Vessel Test", "Port Test", Date(123123), 3, Date(123132), 15));
+        mData.add(ListDataModel("Vessel Test", "Port Test", Date(123123), 3, Date(123132), 15));
+        mData.add(ListDataModel("Vessel Test", "Port Test", Date(123123), 3, Date(123132), 15));
 
         return true;
     }

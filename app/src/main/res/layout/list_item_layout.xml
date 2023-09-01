@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/widgetItemContainer">
 
-    <TextView android:id="@+id/textViewShip"
+    <TextView android:id="@+id/textViewVessel"
         android:text="ERROR"
         android:layout_width="100dp"
         android:layout_height="wrap_content"

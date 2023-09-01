@@ -42,7 +42,7 @@ class WidgetListViewService : RemoteViewsService() {
             }
             val rv = RemoteViews(mContext.packageName, R.layout.list_item_layout);
 
-            rv.setTextViewText(R.id.textViewShip, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.VESSEL)));
+            rv.setTextViewText(R.id.textViewVessel, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.VESSEL)));
             rv.setTextViewText(R.id.textViewPort, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.PORT)));
             rv.setTextViewText(R.id.textViewArrivalDate, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.ARRIVAL_DATE)));
             rv.setTextViewText(R.id.textViewArrivalLeft, mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.ARRIVAL_LEFT)));
