@@ -1,4 +1,4 @@
-package com.example.GreenAtomVessels
+package com.example.greenatomvessels
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity()
 {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main_layout)
     }
 }

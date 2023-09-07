@@ -1,4 +1,4 @@
-package com.example.GreenAtomVessels
+package com.example.greenatomvessels
 
 import org.junit.Test
 

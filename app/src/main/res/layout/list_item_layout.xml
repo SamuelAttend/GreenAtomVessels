@@ -2,10 +2,11 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/widgetItemContainer">
+    android:id="@+id/listItem">
 
     <TextView android:id="@+id/textViewVessel"
         android:text="ERROR"
+        android:textSize="12dp"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -14,6 +15,7 @@
 
     <TextView android:id="@+id/textViewPort"
         android:text="ERROR"
+        android:textSize="12dp"
         android:layout_width="49dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -22,6 +24,7 @@
 
     <TextView android:id="@+id/textViewArrivalDate"
         android:text="ERROR"
+        android:textSize="12dp"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -30,6 +33,7 @@
 
     <TextView android:id="@+id/textViewArrivalLeft"
         android:text="ERROR"
+        android:textSize="12dp"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -38,6 +42,7 @@
 
     <TextView android:id="@+id/textViewDepartureDate"
         android:text="ERROR"
+        android:textSize="12dp"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -46,6 +51,7 @@
 
     <TextView android:id="@+id/textViewDepartureLeft"
         android:text="ERROR"
+        android:textSize="12dp"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:gravity="center"
