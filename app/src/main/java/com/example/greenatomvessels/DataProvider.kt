@@ -29,13 +29,16 @@ class DataProvider : ContentProvider() {
     private val mData : ArrayList<ListDataModel> = ArrayList()
 
     override fun onCreate(): Boolean {
-        mData.add(ListDataModel("Vessel Test", "Port Test", "06.09.23", "3", "07.09.23", "15", true))
-        mData.add(ListDataModel("Vessel Test", "Port Test", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("Vessel Test", "Port Test", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("Vessel Test Extra Extra EXTRA", "Port Test", "07.09.23", "3", "06.09.23", "15", true))
-        mData.add(ListDataModel("Vessel Test", "Port Test", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("Vessel Test", "Port Test", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("Vessel Test", "Port Test", "07.09.23", "3", "07.09.23", "15"))
+
+        // ТЕСТОВЫЕ ДАННЫЕ
+        mData.add(ListDataModel("50 лет Победы", "Порт 1", "06.09.23", "3", "07.09.23", "15", true))
+        mData.add(ListDataModel("50 лет Беды", "Порт 13", "07.09.23", "3", "07.09.23", "15"))
+        mData.add(ListDataModel("Трио", "Порт 5", "07.09.23", "3", "07.09.23", "15"))
+        mData.add(ListDataModel("Круизный Атомоход Ленин", "ММСК", "07.09.23", "3", "06.09.23", "15", true))
+        mData.add(ListDataModel("Перун", "СПБ", "07.09.23", "3", "07.09.23", "15"))
+        mData.add(ListDataModel("АзБукиВеди", "СПБ", "07.09.23", "3", "07.09.23", "15"))
+        mData.add(ListDataModel("Безымянный", "СПБ", "07.09.23", "3", "07.09.23", "15"))
+        // ТЕСТОВЫЕ ДАННЫЕ
 
         return true
     }
