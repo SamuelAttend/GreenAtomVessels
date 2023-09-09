@@ -10,8 +10,8 @@ class AlarmService(mContext: Context) {
     companion object {
         const val ALARM_NOTIFICATION_RC = 100
     }
-    private var alarmMgr: AlarmManager = mContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    private var alarmPendingIntent: PendingIntent = PendingIntent.getBroadcast(
+    private val alarmMgr: AlarmManager = mContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    private val alarmPendingIntent: PendingIntent = PendingIntent.getBroadcast(
         mContext,
         ALARM_NOTIFICATION_RC,
         Intent(mContext, AlarmReceiver::class.java).apply { action = AlarmReceiver.ALARM_ACTION },

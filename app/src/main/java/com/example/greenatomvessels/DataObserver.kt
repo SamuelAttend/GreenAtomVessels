@@ -5,7 +5,7 @@ import android.database.ContentObserver
 import android.net.Uri
 import android.os.Handler
 
-class DataObserver(context: Context, handler: Handler?) : ContentObserver(handler) {
+class DataObserver(context: Context, handler: Handler? = null) : ContentObserver(handler) { // НЕ ИСПОЛЬЗУЕТСЯ
     private var mContext = context
 
     override fun onChange(selfChange: Boolean) {
@@ -13,7 +13,11 @@ class DataObserver(context: Context, handler: Handler?) : ContentObserver(handle
         WidgetProvider.sendRefreshBroadcast(mContext)
     }
 
-    fun observeOverContent(uri: Uri) {
-        mContext.contentResolver?.registerContentObserver(uri, true, this)
+    fun startObservingContent(uri: Uri) {
+        mContext.contentResolver?.registerContentObserver(uri, false, this)
+    }
+
+    fun stopObservingContent() {
+        mContext.contentResolver.unregisterContentObserver(this)
     }
 }

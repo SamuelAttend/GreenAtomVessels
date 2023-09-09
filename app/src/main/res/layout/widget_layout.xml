@@ -8,7 +8,7 @@
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/teal_200"
+        android:background="@color/header"
         android:gravity="center"
         android:orientation="horizontal">
 

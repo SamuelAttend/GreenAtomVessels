@@ -13,9 +13,9 @@ class NotificationService (private val mContext: Context) {
     }
 
     var lastID = 0
-    private val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private val notificationMgr = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    fun createNotificationChannel() {
+    fun initNotificationChannel() {
         val channel = NotificationChannel(
             NOTIFICATION_CHANNEL_ID,
             "Избранные рейсы",
@@ -23,8 +23,7 @@ class NotificationService (private val mContext: Context) {
         )
         channel.description = "Уведомляет о текущих избранных рейсах"
 
-        val notificationManager = mContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
+        notificationMgr.createNotificationChannel(channel)
     }
 
     fun showNotification(vessel : String, port: String, arrival: Boolean) {
@@ -33,7 +32,7 @@ class NotificationService (private val mContext: Context) {
             .setSmallIcon(R.mipmap.ic_launcher)
             .build()
 
-        notificationManager.notify(
+        notificationMgr.notify(
             lastID++,
             notification
         )

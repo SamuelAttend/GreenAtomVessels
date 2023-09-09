@@ -10,7 +10,7 @@ import java.lang.IndexOutOfBoundsException
 
 class DataProvider : ContentProvider() {
     companion object {
-        val DATA_URI : Uri = Uri.parse("content://com.example.greenatomvessels/data")
+        val DATA_URI : Uri = Uri.parse("content://com.example.greenatomvessels.provider/data")
         const val FAVORITE_SWITCH_SIGNAL = 1
         const val DATE_FORMAT: String = "dd.MM.yy"
     }
@@ -29,15 +29,14 @@ class DataProvider : ContentProvider() {
     private val mData : ArrayList<ListDataModel> = ArrayList()
 
     override fun onCreate(): Boolean {
-
         // ТЕСТОВЫЕ ДАННЫЕ
-        mData.add(ListDataModel("50 лет Победы", "Порт 1", "06.09.23", "3", "07.09.23", "15", true))
-        mData.add(ListDataModel("50 лет Беды", "Порт 13", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("Трио", "Порт 5", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("Круизный Атомоход Ленин", "ММСК", "07.09.23", "3", "06.09.23", "15", true))
-        mData.add(ListDataModel("Перун", "СПБ", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("АзБукиВеди", "СПБ", "07.09.23", "3", "07.09.23", "15"))
-        mData.add(ListDataModel("Безымянный", "СПБ", "07.09.23", "3", "07.09.23", "15"))
+        mData.add(ListDataModel("50 лет Победы", "ММСК", "10.09.23", "3", "09.09.23", "15", true))
+        mData.add(ListDataModel("50 лет Беды", "ММСК", "10.09.23", "3", "09.09.23", "15", true))
+        mData.add(ListDataModel("Трио", "ММСК", "09.09.23", "3", "09.09.23", "15", false))
+        mData.add(ListDataModel("Круизный Атомоход Ленин", "ММСК", "09.09.23", "3", "09.09.23", "15", true))
+        mData.add(ListDataModel("Перун", "СПБ", "10.09.23", "3", "10.09.23", "15", false))
+        mData.add(ListDataModel("АзБукиВеди", "СПБ", "09.09.23", "3", "09.09.23", "15", true))
+        mData.add(ListDataModel("Безымянный", "СПБ", "09.09.23", "3", "09.09.23", "15", false))
         // ТЕСТОВЫЕ ДАННЫЕ
 
         return true
@@ -60,7 +59,6 @@ class DataProvider : ContentProvider() {
                 Columns.DEPARTURE_DATE,
                 Columns.DEPARTURE_LEFT,
                 Columns.FAVORITE))
-
         mData.forEachIndexed { index, element ->
             cursor.addRow(arrayOf(
                 index,
@@ -89,7 +87,7 @@ class DataProvider : ContentProvider() {
                     values.getAsString(Columns.DEPARTURE_DATE),
                     values.getAsString(Columns.DEPARTURE_LEFT)
                 ))) {
-                    context?.contentResolver?.notifyChange(uri, null)
+                    notifyDataChanged()
                     val id: Long = mData.lastIndex.toLong()
                     return ContentUris.withAppendedId(DATA_URI, id)
                 }
@@ -104,7 +102,7 @@ class DataProvider : ContentProvider() {
         } catch (e: IndexOutOfBoundsException) {
             return 0
         }
-        context?.contentResolver?.notifyChange(uri, null)
+        notifyDataChanged()
         return 1
     }
 
@@ -113,7 +111,6 @@ class DataProvider : ContentProvider() {
                         selection: String?,
                         selectionArgs: Array<out String>?): Int {
         val id: Int = Integer.parseInt(uri.pathSegments[1])
-
         if (values != null) {
             if (values.getAsString(Columns.VESSEL) != null) mData[id].mVessel = values.getAsString(Columns.VESSEL)
             if (values.getAsString(Columns.PORT) != null) mData[id].mPort = values.getAsString(Columns.PORT)
@@ -122,11 +119,14 @@ class DataProvider : ContentProvider() {
             if (values.getAsString(Columns.DEPARTURE_DATE) != null) mData[id].mDepartureDate = values.getAsString(Columns.DEPARTURE_DATE)
             if (values.getAsString(Columns.DEPARTURE_LEFT) != null) mData[id].mDepartureLeft = values.getAsString(Columns.DEPARTURE_LEFT)
             if (values.getAsString(Columns.FAVORITE) != null) mData[id].mFavorite = mData[id].mFavorite.not()
-
-            context?.contentResolver?.notifyChange(uri, null)
+            notifyDataChanged()
             return 1
         }
-
         return 0
+    }
+
+    private fun notifyDataChanged() {
+        context?.contentResolver?.notifyChange(DATA_URI, null)
+        WidgetProvider.sendRefreshBroadcast(context) // ЭТО ЛЮТЕЙШИЙ КОСТЫЛЬ, НО ИНАЧЕ ОБНОВЛЕНИЕ ВИДЖЕТА ЗАНИМАЕТ СЛИШКОМ МНОГО ВРЕМЕНИ
     }
 }

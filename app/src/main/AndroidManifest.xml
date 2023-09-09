@@ -36,19 +36,16 @@
 
         <receiver
             android:name=".AlarmReceiver">
-
         </receiver>
 
         <receiver
             android:name=".ListItemReceiver">
-
         </receiver>
         
         <provider
-            android:authorities="com.example.greenatomvessels"
-            android:name="com.example.greenatomvessels.DataProvider"
-            android:enabled="true"
-            android:exported="true">
+            android:authorities="com.example.greenatomvessels.provider"
+            android:name=".DataProvider"
+            android:exported="false">
         </provider>
 
         <service

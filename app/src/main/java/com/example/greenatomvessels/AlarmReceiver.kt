@@ -27,21 +27,18 @@ class AlarmReceiver : BroadcastReceiver() {
 
         while (cursor!!.moveToNext()) {
             if (cursor.getString(cursor.getColumnIndex(DataProvider.Columns.FAVORITE)).toBoolean()) {
-                var arrival : Boolean? = null
-                when (date) {
-                    cursor.getString(cursor.getColumnIndex(DataProvider.Columns.ARRIVAL_DATE)) -> {
-                        arrival = true
-                    }
-                    cursor.getString(cursor.getColumnIndex(DataProvider.Columns.DEPARTURE_DATE)) -> {
-                        arrival = false
-                    }
-                }
-
-                if (arrival != null) {
+                if (date == cursor.getString(cursor.getColumnIndex(DataProvider.Columns.ARRIVAL_DATE))) {
                     notificationService?.showNotification(
                         cursor.getString(cursor.getColumnIndex(DataProvider.Columns.VESSEL)),
                         cursor.getString(cursor.getColumnIndex(DataProvider.Columns.PORT)),
-                        arrival
+                        true
+                    )
+                }
+                if (date == cursor.getString(cursor.getColumnIndex(DataProvider.Columns.DEPARTURE_DATE))) {
+                    notificationService?.showNotification(
+                        cursor.getString(cursor.getColumnIndex(DataProvider.Columns.VESSEL)),
+                        cursor.getString(cursor.getColumnIndex(DataProvider.Columns.PORT)),
+                        false
                     )
                 }
             }

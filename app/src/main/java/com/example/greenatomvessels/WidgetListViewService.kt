@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
+import android.os.Binder
 import android.widget.AdapterView
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
@@ -23,8 +24,12 @@ class WidgetListViewService : RemoteViewsService() {
         }
 
         override fun onDataSetChanged() {
+            val identityToken: Long = Binder.clearCallingIdentity()
+
             mCursor?.close()
             mCursor = mContext.contentResolver.query(DataProvider.DATA_URI, null, null, null, null)
+
+            Binder.restoreCallingIdentity(identityToken)
         }
 
         override fun onDestroy() {
@@ -52,7 +57,7 @@ class WidgetListViewService : RemoteViewsService() {
 
             rv.setInt(R.id.listItem, "setBackgroundColor",
                 if (mCursor!!.getString(mCursor!!.getColumnIndex(DataProvider.Columns.FAVORITE)).toBoolean())
-                    Color.parseColor("#FFD700")
+                    Color.parseColor("#C2FD8E")
                 else
                     Color.parseColor("#FFFFFF"))
 
