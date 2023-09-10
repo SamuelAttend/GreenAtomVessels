@@ -42,7 +42,7 @@ class WidgetListViewService : RemoteViewsService() {
 
         @SuppressLint("Range")
         override fun getViewAt(position: Int): RemoteViews? {
-            if (position == AdapterView.INVALID_POSITION || mCursor == null || !mCursor!!.moveToPosition(position))
+            if (position == AdapterView.INVALID_POSITION || !mCursor!!.moveToPosition(position))
             {
                 return null
             }

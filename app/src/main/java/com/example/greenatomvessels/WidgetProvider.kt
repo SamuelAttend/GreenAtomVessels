@@ -46,20 +46,12 @@ class WidgetProvider : AppWidgetProvider() {
     }
 
     companion object {
-            fun sendRefreshBroadcast(context: Context?) {
-                val intent = Intent(context, WidgetProvider::class.java)
-                intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-                context?.sendBroadcast(intent)
-            }
-    }
-
-    override fun onReceive(context: Context?, intent: Intent?) {
-        super.onReceive(context, intent)
-        if (intent?.action != AppWidgetManager.ACTION_APPWIDGET_UPDATE) {
-            return
+        fun notifyChange(context: Context) {
+            val mgr = AppWidgetManager.getInstance(context)
+            val cn = ComponentName(context, WidgetProvider::class.java)
+            mgr.notifyAppWidgetViewDataChanged(
+                mgr.getAppWidgetIds(cn), R.id.listView
+            )
         }
-        val mgr = AppWidgetManager.getInstance(context)
-        val cn = context?.let { ComponentName(it, WidgetProvider::class.java) }
-        mgr.notifyAppWidgetViewDataChanged(mgr.getAppWidgetIds(cn), R.id.listView)
     }
 }

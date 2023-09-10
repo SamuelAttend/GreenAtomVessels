@@ -30,12 +30,12 @@ class DataProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         // ТЕСТОВЫЕ ДАННЫЕ
-        mData.add(ListDataModel("50 лет Победы", "ММСК", "10.09.23", "3", "09.09.23", "15", true))
-        mData.add(ListDataModel("50 лет Беды", "ММСК", "10.09.23", "3", "09.09.23", "15", true))
+        mData.add(ListDataModel("50 лет Победы", "ММСК", "10.09.23", "3", "09.09.23", "15", false))
+        mData.add(ListDataModel("50 лет Беды", "ММСК", "10.09.23", "3", "09.09.23", "15", false))
         mData.add(ListDataModel("Трио", "ММСК", "09.09.23", "3", "09.09.23", "15", false))
-        mData.add(ListDataModel("Круизный Атомоход Ленин", "ММСК", "09.09.23", "3", "09.09.23", "15", true))
+        mData.add(ListDataModel("Круизный Атомоход Ленин", "ММСК", "09.09.23", "3", "09.09.23", "15", false))
         mData.add(ListDataModel("Перун", "СПБ", "10.09.23", "3", "10.09.23", "15", false))
-        mData.add(ListDataModel("АзБукиВеди", "СПБ", "09.09.23", "3", "09.09.23", "15", true))
+        mData.add(ListDataModel("АзБукиВеди", "СПБ", "09.09.23", "3", "09.09.23", "15", false))
         mData.add(ListDataModel("Безымянный", "СПБ", "09.09.23", "3", "09.09.23", "15", false))
         // ТЕСТОВЫЕ ДАННЫЕ
 
@@ -87,7 +87,7 @@ class DataProvider : ContentProvider() {
                     values.getAsString(Columns.DEPARTURE_DATE),
                     values.getAsString(Columns.DEPARTURE_LEFT)
                 ))) {
-                    notifyDataChanged()
+                    notifyChange()
                     val id: Long = mData.lastIndex.toLong()
                     return ContentUris.withAppendedId(DATA_URI, id)
                 }
@@ -102,7 +102,7 @@ class DataProvider : ContentProvider() {
         } catch (e: IndexOutOfBoundsException) {
             return 0
         }
-        notifyDataChanged()
+        notifyChange()
         return 1
     }
 
@@ -119,14 +119,14 @@ class DataProvider : ContentProvider() {
             if (values.getAsString(Columns.DEPARTURE_DATE) != null) mData[id].mDepartureDate = values.getAsString(Columns.DEPARTURE_DATE)
             if (values.getAsString(Columns.DEPARTURE_LEFT) != null) mData[id].mDepartureLeft = values.getAsString(Columns.DEPARTURE_LEFT)
             if (values.getAsString(Columns.FAVORITE) != null) mData[id].mFavorite = mData[id].mFavorite.not()
-            notifyDataChanged()
+            notifyChange()
             return 1
         }
         return 0
     }
 
-    private fun notifyDataChanged() {
+    private fun notifyChange() {
         context?.contentResolver?.notifyChange(DATA_URI, null)
-        WidgetProvider.sendRefreshBroadcast(context) // ЭТО ЛЮТЕЙШИЙ КОСТЫЛЬ, НО ИНАЧЕ ОБНОВЛЕНИЕ ВИДЖЕТА ЗАНИМАЕТ СЛИШКОМ МНОГО ВРЕМЕНИ
+        context?.let { WidgetProvider.notifyChange(it) }
     }
 }
