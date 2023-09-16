@@ -30,13 +30,13 @@ class DataProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         // ТЕСТОВЫЕ ДАННЫЕ
-        mData.add(ListDataModel("50 лет Победы", "ММСК", "10.09.23", "3", "09.09.23", "15", false))
-        mData.add(ListDataModel("50 лет Беды", "ММСК", "10.09.23", "3", "09.09.23", "15", false))
-        mData.add(ListDataModel("Трио", "ММСК", "09.09.23", "3", "09.09.23", "15", false))
-        mData.add(ListDataModel("Круизный Атомоход Ленин", "ММСК", "09.09.23", "3", "09.09.23", "15", false))
-        mData.add(ListDataModel("Перун", "СПБ", "10.09.23", "3", "10.09.23", "15", false))
-        mData.add(ListDataModel("АзБукиВеди", "СПБ", "09.09.23", "3", "09.09.23", "15", false))
-        mData.add(ListDataModel("Безымянный", "СПБ", "09.09.23", "3", "09.09.23", "15", false))
+        mData.add(ListDataModel("50 лет Победы", "ММСК", "11.09.23", "3 д.", "09.09.23", "15 д.", false))
+        mData.add(ListDataModel("50 лет Беды", "ММСК", "11.09.23", "3 д.", "09.09.23", "15 д.", false))
+        mData.add(ListDataModel("Трио", "ММСК", "09.09.23", "3 д.", "09.09.23", "15 д.", false))
+        mData.add(ListDataModel("Круизный Атомоход Ленин", "ММСК", "09.09.23", "3 д.", "09.09.23", "15 д.", false))
+        mData.add(ListDataModel("Перун", "СПБ", "11.09.23", "3 д.", "11.09.23", "15 д.", false))
+        mData.add(ListDataModel("АзБукиВеди", "СПБ", "09.09.23", "3 мин.", "09.09.23", "15 мин.", false))
+        mData.add(ListDataModel("Безымянный", "СПБ", "09.09.23", "3 сек.", "09.09.23", "15 мин. 20 сек.", false))
         // ТЕСТОВЫЕ ДАННЫЕ
 
         return true
